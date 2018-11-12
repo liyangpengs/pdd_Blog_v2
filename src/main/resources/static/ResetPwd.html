@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="generator" content="emlog" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="https://pjax.cn/favicon.ico">
+	<title>白发先生的JAVA知识圈-重置密码</title>
+	<link rel="stylesheet" href="static/css/style.css" type='text/css' media='screen' />
+	<script src="static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="static/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body class="nav-fixed">
+<nav id="header" class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="https://pjax.cn/" class="navbar-brand logo"><img src="static/picture/logo.png" alt="Finally"></a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav nav-top">
+				<li class="active">
+					<a href="https://pjax.cn/">
+						<i class='fa fa-home'></i> 首页
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="https://pjax.cn/sort/recommend" class="dropdown-toggle" data-toggle="dropdown">
+						<i class='fa fa-twitch'></i> 精选推荐 <span class="fa fa-angle-down"></span>
+
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="https://pjax.cn/sort/grfx"><i class="fa fa-plug"></i> 个人分享</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="https://pjax.cn/sort/theme" class="dropdown-toggle" data-toggle="dropdown">
+						<i class='fa fa-language'></i> 模板插件 <span class="fa fa-angle-down"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="https://pjax.cn/sort/emlog"><i class="fa fa-desktop"></i>Spring框架</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flask"></i>
+						更多功能 <span class="fa fa-angle-down"></span> </a>
+					<ul class="dropdown-menu">
+						<li><a href="https://pjax.cn/contact.html"><i class="fa fa-comment"></i> 留言吐槽</a></li>
+						<li><a href="https://pjax.cn/album.html"><i class="fa fa-picture-o"></i> 相册图库</a></li>
+						<li><a href="https://pjax.cn/?plugin=gs_player"><i class="fa fa-music"></i> 音乐收藏</a></li>
+						<li><a href="https://pjax.cn/archives.html"><i class="fa fa-list"></i> 文章归档</a></li>
+						<li><a href="https://pjax.cn/links.html"><i class="fa fa-link"></i> 我的邻居</a></li>
+						<li><a href="https://pjax.cn/tools.html"><i class="fa fa-wrench"></i> 站长工具</a></li>
+						<li><a href="https://pjax.cn/about.html"><i class="fa fa-id-card-o"></i> 关于饺子</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="fly-nav-right">
+				<div class="login-nav"><a href="#" class="expand" data-target="#myLogin" data-toggle="modal"
+										  data-backdrop="static" target="_blank"><i class="fa fa-user-circle"></i></a>
+				</div>
+				<div class="logout-nav" style="display:none"><a href="https://pjax.cn/?user&home"><span
+						class="login-avatars"></span></a>
+					<div class="avatar-menu">
+						<div class="dltips">
+							<div class="dlli"><a href="https://pjax.cn/?user&datas"><i class="fa fa-user-circle-o"></i>
+								修改资料</a></div>
+							<div class="dlli lgset"></div>
+							<div class="dlli logout"><a href="javascript:void(0)" onclick="loginOut()" class="login_logout"><i
+									class="fa fa-sign-out"></i> 退出登录</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="fly-search fly-search-s"><i class="fa fa-search"></i></div>
+			</div>
+		</div>
+	</div>
+</nav>
+<div id="FLY"><style>
+.content-wrap .content.resetpass{padding: 20px;text-align: center;margin-right: 0;background-color: #fff;border: 1px solid #EAEAEA;border-radius: 4px;min-height:480px;}
+.resetpass form{width: 300px;margin: 0 auto;text-align: left;}
+.resetpass form p{margin-bottom: 20px;}
+.resetpass h1{font-size: 24px;font-weight: normal;}
+.resetpass h3{color: #777;}
+.resetpass h3 .glyphicon{top: 4px;}
+.resetpasssteps{margin-bottom: 50px;overflow: hidden;}
+.resetpasssteps li{width: 33.33333%;float: left;background-color: #eee;color: #666;line-height: 33px;position: relative;}
+.resetpasssteps li.active{background-color: #45B6F7;color: #fff;}
+.resetpasssteps li .glyphicon{position: absolute;right: -17px;top:-10px;font-size: 46px;color: #fff;z-index: 2}
+.errtip{background-color: #FCEAEA;color: #DB5353;padding: 8px 15px;font-size: 14px;border: 1px solid #FC9797;border-radius: 5px}
+</style>
+<div class="container">
+	<div class="content-wrap">
+		<div id="content" class="content resetpass">
+			<h1 class="hide">重置密码</h1>
+			<ul class="resetpasssteps">
+				<li>获取密码重置邮件<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class="active">设置新密码<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>成功修改密码</li>
+			</ul>
+			<form action="" method="post">
+				<h3>设置新密码：</h3>
+				<p><input type="password" name="pass1" class="form-control input-lg" placeholder="输入新密码" autofocus></p>
+				<h5>重复新密码：</h5>
+				<p><input type="password" name="pass2" class="form-control input-lg" placeholder="重复新密码"></p>
+				<p id="prompt"></p>
+				<p><input type="button" value="确认提交" class="btn btn-block btn-primary btn-lg"></p>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="myLogin" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="sign-login">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">&times;</button>
+					<h3 class="sign-title">用户登陆</h3>
+				</div>
+				<div class="clearfix"></div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-7 ajax_login_list1">
+								<form id="formtest" action="" method="post">
+									<div class="input-group input-login">
+										<span class="input-group-addon"><i class="fa fa-user faw"></i></span>
+										<input class="form-control lbtn" placeholder="请输入用户名" id="input1"
+											   name="user" type="text" value=""/>
+									</div>
+									<div class="input-group input-login">
+										<span class="input-group-addon"><i class="fa fa-lock faw"></i></span>
+										<input class="form-control lbtn" placeholder="请输入密码" id="input2" name="pw"
+											   type="password" value=""/>
+									</div>
+									<div class="input-group input-login">
+										<span class="input-group-addon"><i class="fa fa-file-code-o faw"></i></span>
+										<input class="form-control lbtn" placeholder="请填写验证码" id="imgcode"
+											   name="imgcode" type="text" value=""/>
+										<span class="ajax_reg_imgcode imgcode"><img src= "/API/VerificationCode/getCode" class="code"/></span>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="ispersis" id="ispersis"
+												   class="mgc mgc-info" value="1" title="7天免登陆"/> 记住密码
+										</label>
+										<span style="float:right">
+												<a href="javascript:;" class="wjmm">忘记密码?</a>
+											</span>
+										<div class="clearfix"></div>
+									</div>
+								</form>
+								<div id="contentdiv_a" style="text-align: center;"></div>
+								<div class="form-group">
+									<input type="submit" name="send_ajax" id="send_ajax" value="用户登陆"
+										   class="btn ajax_reg_btn btn-block">
+								</div>
+							</div>
+							<div class="col-sm-5 ajax_login_list2">
+								<div class="form-group">
+									<p>还没有账号?</p>
+								</div>
+								<div class="form-group">
+									<input type="submit" value="立即注册" class="btn ajax_reg_btn btn-block ljzc">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="sign-reg" style="display:none">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">&times;</button>
+					<h3 class="sign-title">注册账号</h3>
+				</div>
+				<div class="clearfix"></div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-7 ajax_login_list1">
+								<form id="refrom" action="" method="post">
+									<div class="input-group input-reg">
+										<span class="input-group-addon"><i class="fa fa-user faw"></i></span>
+										<input class="form-control rbtn" placeholder="请输入用户名" name="account"
+											   type="text" value=""/>
+									</div>
+									<div class="input-group input-reg">
+										<span class="input-group-addon"><i class="fa fa-envelope-o faw"></i></span>
+										<input class="form-control rbtn" placeholder="请输入邮箱" name="email"
+											   type="email" value=""/>
+									</div>
+									<div class="input-group input-reg">
+										<span class="input-group-addon"><i class="fa fa-lock faw"></i></span>
+										<input class="form-control rbtn" placeholder="请输入密码" name="password"
+											   type="password" value=""/>
+									</div>
+									<div class="input-group input-reg">
+										<span class="input-group-addon"><i class="fa fa-check faw"></i></span>
+										<input class="form-control rbtn" placeholder="请确认密码" name="repassword"
+											   type="password" value=""/>
+									</div>
+									<div class="input-group input-reg">
+										<span class="input-group-addon"><i class="fa fa-file-code-o faw"></i></span>
+										<input class="form-control rbtn" placeholder="请输入验证码" id="reimgcode"
+											   name="reimgcode" type="text" value=""/>
+										<span class="ajax_reg_imgcode imgcode"><img
+												src="/API/VerificationCode/getCode" class="code"/></span>
+									</div>
+									<div class="input-group input-reg">
+										<input type="text" class="form-control code" name="code"
+											   placeholder="邮箱验证码">
+										<span class="input-group-btn"><button class="btn btn-default send-code"
+																			  type="button">发送验证码</button></span>
+									</div>
+								</form>
+								<div id="contentdiv_b" style="text-align: center;"></div>
+								<div class="form-group">
+									<input type="submit" name="re_ajax" id="re_ajax" value="立即注册"
+										   class="ajax_reg_btn btn_go form-control"/>
+								</div>
+							</div>
+							<div class="col-sm-5 ajax_login_list2">
+								<div class="form-group">
+									<p>已有账号?</p>
+								</div>
+								<div class="form-group">
+									<input type="submit" value="立即登陆" class="btn ajax_reg_btn btn-block ljdl">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="sign-zhaohui" style="display:none">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">×</button>
+					<h3 class="sign-title">密码找回</h3>
+				</div>
+				<div class="clearfix"></div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-7 ajax_login_list1">
+							<div class="container-fluid">
+								<form id="mmzh" action="" method="post">
+									<div class="input-group input-email">
+										<span class="input-group-addon"><i class="fa fa-retweet faw"></i></span>
+										<input class="form-control lbtn" placeholder="请输入邮箱" id="reemail" name="email" type="email" value="">
+									</div>
+								</form>
+								<div id="contentdiv_t" style="text-align: center;"></div>
+								<div class="form-group ajax_btn-reg">
+									<span><input type="submit" name="pwre_ajax" id="pwre_ajax" value="找回密码" class="btn ajax_reg_btn btn-block"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-5 ajax_login_list2">
+							<div class="form-group">
+								<p>密码已找回?</p>
+							</div>
+							<div class="form-group">
+								<input type="submit" value="立即登陆" class="btn ajax_reg_btn btn-block ljdl">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfloat"></div>
+<div id="f-mobile-footer">
+	<ul id="f-mobile-menu">
+		<li><a href="#"> <span class="fa fa-home"></span> 首页 </a></li>
+		<li><a href="#"> <span class="fa fa-twitch"></span> 微语 </a></li>
+		<li><a href="javascript:;" class="fly-search-s"> <span class="fa fa-search"></span> 搜索 </a></li>
+		<li><a href="#"> <span class="fa fa-info"></span> 关于 </a></li>
+		<li id="mobile-login"><a href="#" class="expand" data-target="#myLogin" data-toggle="modal" data-backdrop="static" target="_blank"> <span class="fa fa-user"></span> 用户 </a>
+		</li>
+	</ul>
+</div>
+</div>
+<footer class="footer">
+	<div class="container copy-right">
+		<div class="footer-tag-list">
+		        <span>Copyright © 2018 <a href="http://gayligayqi.com">白发先生</a>
+                <a href="http://www.miibeian.gov.cn" target="_blank">湘ICP备14019254号</a> </span>
+			<span>Powered by <a href="http://gayligayqi.com" target="_blank">白发先生</a></span>
+		</div>
+	</div>
+</footer>
+<div class="loading"><div class="loading1"><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class='section-left'></div><div class='section-right'></div></div></div>
+<div class="rollbar"><ul>
+<li class="conment-btn"></li>
+<li><a href="javascript:(scrollTo());"><i class="fa fa-chevron-up"></i></a><h6>去顶部<i></i></h6></li>
+</ul></div>
+<script type="text/javascript" src="static/js/main.js"></script>
+<link rel="stylesheet" type="text/css" href="static/css/aos.css" />
+<script type="text/javascript">
+	$(function(){
+	    $(".btn-lg").click(function () {
+			var password=$("input[name=pass1]").val();
+            var repassword=$("input[name=pass2]").val();
+            var token=getQueryString("token");
+            if(password.length<6||repassword.length<6){
+                $("#prompt").html("<span style='color: red'>密码长度不能小于6位</span>");
+                return false;
+			}
+            if(password!=repassword){
+                $("#prompt").html("<span style='color: red'>两次密码输入不相同</span>");
+                return false;
+            }
+            if(token==undefined||token==''){
+                $("#prompt").html("<span style='color: red'>令牌有误</span>");
+                return false;
+			}
+			//发送重置密码请求
+			$.post(domain+"/User/ResetPwd",{password:password,repassword:repassword,token:token},function (data) {
+                if(data.code==0){
+                    alert(data.msg);
+                    $('#myLogin').modal('show')
+                }else{
+                    $("#prompt").html("<span style='color: red'>"+data.msg+"</span>");
+                }
+            },'json')
+        })
+	})
+
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+</script>
+</body>
+</html>

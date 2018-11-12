@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdd.blog.mapper.blog_contentMapper">
+
+    <!-- 结果隐射-->
+    <resultMap id="indexList" type="com.pdd.blog.bean.blog_content" autoMapping="true">
+        <id column="id" property="id"/>
+        <association property="author" javaType="com.pdd.blog.bean.blog_user" autoMapping="true">
+            <id column="uid" property="id"></id>
+        </association>
+    </resultMap>
+    <!-- 查询主页10条最新内容-->
+    <select id="new_content" resultMap="indexList">
+          select b.id,title,url,cover,publishtime,description,u.nickName,u.headSrc,u.id as uid,tag,field from blog_content b
+          inner join blog_user u on u.id=b.author order by publishtime desc limit 0,10
+    </select>
+
+</mapper>
